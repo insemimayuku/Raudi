@@ -13,6 +13,18 @@ const vehicule = sequelize.define(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+    modele: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    longeur: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    largeur: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
     nombre_de_portes: {
       type: DataTypes.INTEGER,
       allowNull: false,
