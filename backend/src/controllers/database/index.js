@@ -17,6 +17,7 @@ class db {
     type_de_carburant,
     annee,
     options,
+
   }) {
     const data = await Vehicule.create({
       marque,
