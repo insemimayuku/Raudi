@@ -11,7 +11,7 @@ const sequelize = new Sequelize({
   port: process.env.DB_PORT,
   logging: false,
   dialectOptions: {
-    socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock",
+    socketPath:  process.env.DB_SOCKET || null,
   },
 });
 
