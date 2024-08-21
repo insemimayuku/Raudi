@@ -29,10 +29,6 @@ const vehicule = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    options: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-    },
   },
 
   {
