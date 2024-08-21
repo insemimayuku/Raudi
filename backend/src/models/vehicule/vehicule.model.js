@@ -29,6 +29,10 @@ const vehicule = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    prix: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
   },
 
   {
