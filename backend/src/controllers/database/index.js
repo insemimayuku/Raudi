@@ -16,14 +16,27 @@ class db {
     nombre_de_places,
     type_de_carburant,
     annee,
+    options,
   }) {
-    return await Vehicule.create({
+    const data = await Vehicule.create({
       marque,
       nombre_de_portes,
       nombre_de_places,
       type_de_carburant,
       annee,
     });
+    const optionsPromises = options.map((option) => {
+      return VehiculeOption.create({
+        vehiculeId: data.id,
+        optionName: option,
+      });
+    });
+    await Promise.all(optionsPromises);
+    const finaldata = {
+      data: data.dataValues,
+      options: options,
+    };
+    return finaldata;
   }
 }
 

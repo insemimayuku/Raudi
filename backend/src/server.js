@@ -9,6 +9,7 @@ test
     nombre_de_places: 5,
     type_de_carburant: "Essence",
     annee: 2021,
+    options: ["Climatisation", "GPS"],
   })
   .then((data) => {
     console.log(data);
