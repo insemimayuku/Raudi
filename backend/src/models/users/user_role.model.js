@@ -20,6 +20,7 @@ const user_role = sequelize.define(
     },
     role: {
       type: DataTypes.ENUM("client", "commercial", "admin"),
+      defaultValue: "client",
       allowNull: false,
     },
   },
