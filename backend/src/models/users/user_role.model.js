@@ -1,7 +1,6 @@
-import { DataTypes } from "@sequelize/core";
 import sequelize from "../../controllers/database/db.js";
 import User from "./user.model.js";
-import user from "./user.model.js";
+import { DataTypes } from "@sequelize/core";
 
 const user_role = sequelize.define(
   "user_role",
@@ -20,7 +19,7 @@ const user_role = sequelize.define(
       allowNull: false,
     },
     role: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.ENUM("client", "commercial", "admin"),
       allowNull: false,
     },
   },
@@ -31,6 +30,8 @@ const user_role = sequelize.define(
     log: false,
   }
 );
-User.hasOne(user_role, { foreignKey: "id" });
-User.belongsTo(User, { foreignKey: "id" });
+
+User.hasOne(user_role, { foreignKey: "userId" });
+user_role.belongsTo(User, { foreignKey: "userId" });
+
 export default user_role;
