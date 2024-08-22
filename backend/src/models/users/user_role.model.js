@@ -1,6 +1,7 @@
 import { DataTypes } from "@sequelize/core";
 import sequelize from "../../controllers/database/db.js";
 import User from "./user.model.js";
+import user from "./user.model.js";
 
 const user_role = sequelize.define(
   "user_role",
@@ -26,11 +27,9 @@ const user_role = sequelize.define(
   {
     tableName: "user_role",
     timestamps: false,
+    freezeTableName: true,
     log: false,
   }
 );
-
-Vehicule.hasMany(VehiculeOption, { foreignKey: "userId" });
-VehiculeOption.belongsTo(Vehicule, { foreignKey: "userId" });
 
 export default user_role;
