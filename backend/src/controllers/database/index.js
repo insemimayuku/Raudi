@@ -1,14 +1,13 @@
 import sequelize from "./db.js";
 import VehiculeOption from "../../models/vehicule/vehicule_options.js";
 import Vehicule from "../../models/vehicule/vehicule.model.js";
+import user from "../../models/users/user.model.js";
+import init from "./init.js";
 
-class db {
+class db extends init {
   constructor() {
+    super();
     this.sequelize = sequelize;
-  }
-
-  async init() {
-    await this.sequelize.sync();
   }
 
   async getVehiculewithOptions() {
@@ -53,11 +52,24 @@ class db {
     };
   }
 
-  async ensureInitialized() {
-    if (!this.initialized) {
-      await this.init();
-      this.initialized = true;
-    }
+  async createUser({ nom, prenom, email, password }) {
+    await this.ensureInitialized();
+    const data = await user.create({
+      nom,
+      prenom,
+      email,
+      password,
+    });
+    return data;
+  }
+  async getUserByEmail(email) {
+    await this.ensureInitialized();
+    const data = await user.findOne({
+      where: {
+        email,
+      },
+    });
+    return data;
   }
 }
 

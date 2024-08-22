@@ -10,6 +10,11 @@ const user = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
+    role: {
+      type: DataTypes.ENUM("client", "commercial", "admin"),
+      defaultValue: "client",
+      allowNull: false,
+    },
     nom: {
       type: DataTypes.STRING(255),
       allowNull: false,
