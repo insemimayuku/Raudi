@@ -1,7 +1,6 @@
 import { DataTypes } from "@sequelize/core";
 import sequelize from "../../controllers/database/db.js";
 import User from "./user.model.js";
-import user from "./user.model.js";
 
 const user_role = sequelize.define(
   "user_role",
@@ -31,5 +30,6 @@ const user_role = sequelize.define(
     log: false,
   }
 );
-
+User.hasMany(user_role, { foreignKey: "id" });
+User.belongsTo(User, { foreignKey: "id" });
 export default user_role;
