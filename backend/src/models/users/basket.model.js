@@ -20,7 +20,7 @@ const user_basket = sequelize.define(
         },
         allowNull: false,
     },
-    vehivule_optionId: {
+    vehicule_optionId: {
         type: DataTypes.INTEGER,
         references: {
             model: VehiculeOption,
