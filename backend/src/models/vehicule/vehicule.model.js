@@ -9,6 +9,10 @@ const vehicule = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    description: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
     marque: {
       type: DataTypes.STRING(255),
       allowNull: false,

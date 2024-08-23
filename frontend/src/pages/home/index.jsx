@@ -1,6 +1,18 @@
+import { useState, useEffect } from "react";
 import mainImage from "../../assets/img/main.jpg";
+import api from "../../utils/api";
 
 export default function Home() {
+  const [vehicles, setVehicles] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      let data = new api();
+      data = await data.getallvehicles();
+      console.log(data);
+      setVehicles(data);
+    };
+    fetchData();
+  }, []);
   return (
     <div className="bg-gray-100 text-gray-900">
       <section
@@ -40,7 +52,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12">Nos Modèles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            {/* <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
                 src="/path-to-car-image-1.jpg"
                 alt="Modèle 1"
@@ -73,7 +85,26 @@ export default function Home() {
                   En savoir plus &rarr;
                 </a>
               </div>
-            </div>
+            </div> */}
+
+            {vehicles.map((vehicle) => (
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <img
+                  src={vehicle.image}
+                  alt={vehicle.modele}
+                  className="w-full h-64 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold mb-2">
+                    {vehicle.marque} {vehicle.modele}
+                  </h3>
+                  <p className="text-gray-700 mb-4">{vehicle.description}</p>
+                  <a href="#" className="text-red-600 font-bold">
+                    En savoir plus &rarr;
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
