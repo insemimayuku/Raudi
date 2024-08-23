@@ -22,6 +22,10 @@ const VehiculeOption = sequelize.define(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+    prix: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
   },
   {
     tableName: "vehicule_options",
