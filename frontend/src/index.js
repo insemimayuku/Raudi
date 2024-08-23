@@ -9,8 +9,10 @@ import Header from "./components/Header";
 import Boutique from "./pages/boutique";
 import ForgotPassword from "./pages/forgot-password";
 import Vehicule from "./pages/vehicule";
+import Dashboard from "./pages/dashboard";
 import NotFound from "./pages/notfound";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
+import AuthProvider from "./Provider/Authprovider.js";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +79,15 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/dashboard",
+    element: (
+      <>
+        <Header />
+        <Dashboard />
+      </>
+    ),
+  },
+  {
     path: "*",
     element: (
       <>
@@ -88,5 +99,9 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <RouterProvider router={router}>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </RouterProvider>
 );

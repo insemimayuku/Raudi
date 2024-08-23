@@ -18,6 +18,16 @@ class db extends init {
     });
     return data;
   }
+  async getSingleVehicule(id) {
+    await this.ensureInitialized();
+    const data = await Vehicule.findOne({
+      where: {
+        id,
+      },
+      include: VehiculeOption,
+    });
+    return data;
+  }
 
   async createVehicule({
     marque,

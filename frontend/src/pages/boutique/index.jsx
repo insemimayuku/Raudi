@@ -1,5 +1,6 @@
 import api from "../../utils/api";
 import { useEffect, useState } from "react";
+import Vehicule from "../../components/Vehicule";
 export default function Boutique() {
   const [vehicles, setVehicles] = useState([]);
   useEffect(() => {
@@ -21,21 +22,21 @@ export default function Boutique() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
             {vehicles.length > 0
               ? vehicles.map((vehicle) => (
-                  <div
+                  <Vehicule
                     key={vehicle.id}
-                    className="bg-white rounded-lg shadow-lg overflow-hidden"
-                  >
-                    <img
-                      src={vehicle.image}
-                      alt={vehicle.name}
-                      className="w-full h-64 object-cover"
-                    />
-                    <div className="p-4">
-                      <h3 className="text-xl font-bold mb-2">{vehicle.name}</h3>
-                      <p className="text-gray-700">{vehicle.description}</p>
-                      <p className="text-gray-700">{vehicle.price}</p>
-                    </div>
-                  </div>
+                    id={vehicle.id}
+                    description={vehicle.description}
+                    marque={vehicle.marque}
+                    modele={vehicle.modele}
+                    longeur={vehicle.longeur}
+                    largeur={vehicle.largeur}
+                    nombre_de_portes={vehicle.nombre_de_portes}
+                    nombre_de_places={vehicle.nombre_de_places}
+                    type_decarburant={vehicle.type_decarburant}
+                    annee={vehicle.annee}
+                    prix={vehicle.prix}
+                    image={vehicle.image}
+                  />
                 ))
               : "Oops nous disposons pas de vehicule actuellement ..."}
           </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import mainImage from "../../assets/img/main.jpg";
 import api from "../../utils/api";
-
+import Vehicule from "../../components/Vehicule";
 export default function Home() {
   const [vehicles, setVehicles] = useState([]);
   useEffect(() => {
@@ -54,22 +54,21 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
             {vehicles.length > 0 ? (
               vehicles.map((vehicle) => (
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                  <img
-                    src={vehicle.image}
-                    alt={vehicle.modele}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-2">
-                      {vehicle.marque} {vehicle.modele}
-                    </h3>
-                    <p className="text-gray-700 mb-4">{vehicle.description}</p>
-                    <a href="#" className="text-red-600 font-bold">
-                      En savoir plus &rarr;
-                    </a>
-                  </div>
-                </div>
+                <Vehicule
+                  key={vehicle.id}
+                  id={vehicle.id}
+                  description={vehicle.description}
+                  marque={vehicle.marque}
+                  modele={vehicle.modele}
+                  longeur={vehicle.longeur}
+                  largeur={vehicle.largeur}
+                  nombre_de_portes={vehicle.nombre_de_portes}
+                  nombre_de_places={vehicle.nombre_de_places}
+                  type_decarburant={vehicle.type_decarburant}
+                  annee={vehicle.annee}
+                  prix={vehicle.prix}
+                  image={vehicle.image}
+                />
               ))
             ) : (
               <h1>Oops nous disposons pas de vehicule actuellement ...</h1>

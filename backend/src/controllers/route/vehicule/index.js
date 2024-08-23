@@ -13,5 +13,19 @@ function getAllvehicule(req, res) {
       });
     });
 }
+function getSinglevehicule(req, res) {
+  const conn = new db();
+  conn
+    .getSingleVehicule(req.params.id)
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((error) => {
+      res.status(500).json({
+        error: error,
+        message: "oops le serveur a rencontré un problème",
+      });
+    });
+}
 
-export { getAllvehicule };
+export { getAllvehicule, getSinglevehicule };

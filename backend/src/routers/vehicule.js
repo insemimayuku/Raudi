@@ -1,7 +1,11 @@
 import express from "express";
 const vehiculerouter = express.Router();
-import { getAllvehicule } from "../controllers/route/vehicule/index.js";
+import {
+  getAllvehicule,
+  getSinglevehicule,
+} from "../controllers/route/vehicule/index.js";
 vehiculerouter.get("/all", getAllvehicule);
+vehiculerouter.get("/:id", getSinglevehicule);
 
 /* router.post("/createTableVehicule", vehiculeController.createTableVehicule);
 router.put("/createVehicule", vehiculeController.createVehicule);
