@@ -34,7 +34,14 @@ const vehicule = sequelize.define(
       allowNull: false,
     },
     type_de_carburant: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.ENUM(
+        "DIESEL",
+        "ESSENCE",
+        "HYBRID",
+        "ELECTRIQUE",
+        "HYDROGENE"
+      ),
+      defaultValue: "DIESEL",
       allowNull: false,
     },
     annee: {
@@ -43,6 +50,10 @@ const vehicule = sequelize.define(
     },
     prix: {
       type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    image: {
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
   },

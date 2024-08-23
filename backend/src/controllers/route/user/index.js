@@ -71,19 +71,20 @@ function deleteUser(req, res) {
       });
     });
 }
-function login(req, res) {
+async function login(req, res) {
   const conn = new db();
   const { email, password } = req.body;
-  conn
-    .login({ email, password })
-    .then((data) => {
-      res.status(200).json(data);
-    })
-    .catch((error) => {
-      res.status(500).json({
-        error: error,
-        message: "oops le serveur a rencontré un problème",
-      });
+  const data = await conn.login({ email, password });
+  if (data && data.id) {
+    const token = await GenerateToken(data.id);
+    res.status(200).json({
+      message: "Connexion réussie",
+      token: token,
     });
+  } else {
+    res.status(401).json({
+      message: "Email ou mot de passe incorrect",
+    });
+  }
 }
 export { getAlluser, createUser, updateUser, deleteUser, login };
