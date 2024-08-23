@@ -51,60 +51,29 @@ export default function Home() {
       <section id="models" className="py-20 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12">Nos Modèles</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                src="/path-to-car-image-1.jpg"
-                alt="Modèle 1"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2">Raudi Modèle X</h3>
-                <p className="text-gray-700 mb-4">
-                  Vivez une vitesse et un luxe inégalés avec la Raudi Modèle X.
-                </p>
-                <a href="#" className="text-red-600 font-bold">
-                  En savoir plus &rarr;
-                </a>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                src="/path-to-car-image-2.jpg"
-                alt="Modèle 2"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2">Raudi Modèle Y</h3>
-                <p className="text-gray-700 mb-4">
-                  Le mélange parfait de puissance et d'efficacité dans la Raudi
-                  Modèle Y.
-                </p>
-                <a href="#" className="text-red-600 font-bold">
-                  En savoir plus &rarr;
-                </a>
-              </div>
-            </div> */}
-
-            {vehicles.map((vehicle) => (
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <img
-                  src={vehicle.image}
-                  alt={vehicle.modele}
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">
-                    {vehicle.marque} {vehicle.modele}
-                  </h3>
-                  <p className="text-gray-700 mb-4">{vehicle.description}</p>
-                  <a href="#" className="text-red-600 font-bold">
-                    En savoir plus &rarr;
-                  </a>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+            {vehicles.length > 0 ? (
+              vehicles.map((vehicle) => (
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src={vehicle.image}
+                    alt={vehicle.modele}
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold mb-2">
+                      {vehicle.marque} {vehicle.modele}
+                    </h3>
+                    <p className="text-gray-700 mb-4">{vehicle.description}</p>
+                    <a href="#" className="text-red-600 font-bold">
+                      En savoir plus &rarr;
+                    </a>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <h1>Oops nous disposons pas de vehicule actuellement ...</h1>
+            )}
           </div>
         </div>
       </section>
