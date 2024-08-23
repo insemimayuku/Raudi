@@ -1,12 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const vehiculeController = require('../controllers/route/vehicule/index');
+import express from "express";
+const vehiculerouter = express.Router();
+import { getAllvehicule } from "../controllers/route/vehicule/index.js";
+vehiculerouter.get("/all", getAllvehicule);
 
+/* router.post("/createTableVehicule", vehiculeController.createTableVehicule);
+router.put("/createVehicule", vehiculeController.createVehicule);
+router.post("/updateVehicule", vehiculeController.updateVehicule);
+router.delete("/deleteVehicule", vehiculeController.deleteVehicule); */
 
-router.post('/createTableVehicule', vehiculeController.createTableVehicule);
-router.put('/createVehicule', vehiculeController.createVehicule);
-router.post('/updateVehicule', vehiculeController.updateVehicule);
-router.delete('/deleteVehicule', vehiculeController.deleteVehicule);
-
-
-module.exports = router; 
+export default vehiculerouter;

@@ -3,14 +3,14 @@ import VehiculeOption from "../../models/vehicule/vehicule_options.js";
 import Vehicule from "../../models/vehicule/vehicule.model.js";
 import user from "../../models/users/user.model.js";
 import init from "./init.js";
-
+import bcrypt from "bcrypt";
 class db extends init {
   constructor() {
     super();
     this.sequelize = sequelize;
   }
 
-  async getVehiculewithOptions() {
+  async getAllVehicule() {
     await this.ensureInitialized();
 
     const data = await Vehicule.findAll({
@@ -54,11 +54,38 @@ class db extends init {
 
   async createUser({ nom, prenom, email, password }) {
     await this.ensureInitialized();
+    const hashedPassword = await bcrypt.hash(password, 10);
     const data = await user.create({
       nom,
       prenom,
       email,
-      password,
+      password: hashedPassword,
+    });
+    return data;
+  }
+  async updateUser({ id, nom, prenom, email, password }) {
+    await this.ensureInitialized();
+    const data = await user.update(
+      {
+        nom,
+        prenom,
+        email,
+        password,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+    return data;
+  }
+  async deleteUser({ id }) {
+    await this.ensureInitialized();
+    const data = await user.destroy({
+      where: {
+        id,
+      },
     });
     return data;
   }
@@ -70,6 +97,26 @@ class db extends init {
       },
     });
     return data;
+  }
+  async getUserById(id) {
+    await this.ensureInitialized();
+    const data = await user.findOne({
+      where: {
+        id,
+      },
+    });
+    return data;
+  }
+  async login({ email, password }) {
+    await this.ensureInitialized();
+    const data = await this.getUserByEmail(email);
+    if (data) {
+      const isValid = await bcrypt.compare(password, data.password);
+      if (isValid) {
+        return data;
+      }
+    }
+    return null;
   }
 }
 

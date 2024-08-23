@@ -1,24 +1,28 @@
 import jwt from "jsonwebtoken";
+import db from "../database/index.js";
 
-function checkAuth(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  return res.status(401).json({
-    message: "Unauthorized",
-  });
-}
+async function GenerateToken(userId) {
+  const conn = new db();
 
-function GenerateToken(user) {
-  return jwt.sign(
-    {
-      id: user.id,
-      email: user.email,
-    },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: "1h",
+  try {
+    const data = await conn.getUserById(userId);
+    if (data) {
+      const token = jwt.sign(
+        {
+          id: data.id,
+          email: data.email,
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" }
+      );
+
+      return token;
+    } else {
+      throw new Error("User not found");
     }
-  );
+  } catch (error) {
+    console.error("Error generating token:", error);
+    throw error;
+  }
 }
-export { checkAuth, GenerateToken };
+export { GenerateToken };
