@@ -21,7 +21,7 @@ const user_basket = sequelize.define(
         allowNull: false,
     },
     vehicule_optionId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.JSON,
         references: {
             model: VehiculeOption,
             key: "id",
