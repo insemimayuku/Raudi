@@ -8,6 +8,8 @@ import Register from "./pages/register";
 import Header from "./components/Header";
 import Boutique from "./pages/boutique";
 import ForgotPassword from "./pages/forgot-password";
+import Vehicule from "./pages/vehicule";
+import NotFound from "./pages/notfound";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -62,6 +64,24 @@ const router = createBrowserRouter([
       <>
         <Header />
         <ForgotPassword />
+      </>
+    ),
+  },
+  {
+    path: "/vehicule/:id",
+    element: (
+      <>
+        <Header />
+        <Vehicule />
+      </>
+    ),
+  },
+  {
+    path: "*",
+    element: (
+      <>
+        <Header />
+        <NotFound />
       </>
     ),
   },
